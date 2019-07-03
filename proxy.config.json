@@ -1,0 +1,6 @@
+{
+  "/api/v1":{
+    "target":"http://test.sumsss.cn:8001",
+    "secure":false
+  }
+}

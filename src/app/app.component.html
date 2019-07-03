@@ -1,10 +1,56 @@
-<h1>Angular Router</h1>
-<nav>
-  <a routerLink="/crisis-center" routerLinkActive="active">Crisis Center</a><br>
-  <a routerLink="/heroes" routerLinkActive="active">Heroes</a><br>
-  <a [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>
-</nav>
+<ul nz-menu [nzMode]="'horizontal'" [nzTheme]="'dark'">
+  <li nz-submenu>
+    <span title><i nz-icon type="mail"></i> Navigation One</span>
+    <ul>
+      <li nz-menu-group>
+        <span title>Item 1</span>
+        <ul>
+          <li nz-menu-item>
+            <a routerLink="/sql-exe" routerLinkActive="active">sql-exe</a>
+          </li>
+          <li nz-menu-item>Option 2</li>
+        </ul>
+      </li>
+      <li nz-menu-group>
+        <span title>Item 2</span>
+        <ul>
+          <li nz-menu-item>Option 3</li>
+          <li nz-menu-item>Option 4</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li nz-submenu>
+    <span title><i nz-icon type="appstore"></i> Navigation Two</span>
+    <ul>
+      <li nz-menu-item>Option 5</li>
+      <li nz-menu-item>Option 6</li>
+      <li nz-submenu>
+        <span title>Submenu</span>
+        <ul>
+          <li nz-menu-item>Option 7</li>
+          <li nz-menu-item>Option 8</li>
+          <li nz-submenu>
+            <span title>Submenu</span>
+            <ul>
+              <li nz-menu-item>Option 9</li>
+              <li nz-menu-item>Option 10</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li nz-submenu>
+    <span title><i nz-icon type="setting"></i> Navigation Three</span>
+    <ul>
+      <li nz-menu-item>Option 11</li>
+      <li nz-menu-item>Option 12</li>
+      <li nz-menu-item>Option 13</li>
+    </ul>
+  </li>
+</ul>
+
 <div [@routeAnimation]="getAnimationData(routerOutlet)">
   <router-outlet #routerOutlet="outlet"></router-outlet>
 </div>
-<router-outlet name="popup"></router-outlet>

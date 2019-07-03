@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { slideInAnimation } from './animations';
 
@@ -9,9 +9,14 @@ import { slideInAnimation } from './animations';
   animations: [ slideInAnimation ]
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   constructor() {}
+
   getAnimationData(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  }
+
+  ngOnInit(): void {
+
   }
 }
