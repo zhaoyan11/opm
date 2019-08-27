@@ -1,0 +1,128 @@
+<form nz-form class="ant-advanced-search-form" [nzLayout]="'vertical'">
+  <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 40, xl: 40, xxl: 40 }">
+    <div nz-col [nzXXl]="4" [nzXl]="6" [nzLg]="8" [nzMd]="12">
+      <nz-form-item>
+        <nz-form-control>
+          <input
+            nz-input
+            placeholder="姓名"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzXXl]="4" [nzXl]="6" [nzLg]="8" [nzMd]="12">
+      <nz-form-item>
+        <nz-form-control>
+          <input
+            nz-input
+            placeholder="电话"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzXXl]="4" [nzXl]="6" [nzLg]="8" [nzMd]="12">
+      <nz-form-item>
+        <nz-form-control>
+          <input
+            nz-input
+            placeholder="身份证"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzXXl]="4" [nzXl]="6" [nzLg]="8" [nzMd]="12">
+      <nz-form-item>
+        <nz-form-control>
+          <input
+            nz-input
+            placeholder="居住地址"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzXXl]="4" [nzXl]="6" [nzLg]="8" [nzMd]="12">
+      <nz-form-item>
+        <nz-form-control>
+          <input
+            nz-input
+            placeholder="籍贯"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzXXl]="4" [nzXl]="6" [nzLg]="8" [nzMd]="12">
+      <nz-form-item>
+        <nz-form-control>
+          <input
+            nz-input
+            placeholder="政治面貌"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col [nzXXl]="4" [nzXl]="6" [nzLg]="8" [nzMd]="12">
+      <button nz-button [nzType]="'primary'">查询</button>
+      <button nz-button>重置</button>
+      <a class="collapse">
+        Collapse
+        <i nz-icon [nzType]="'down'"></i>
+      </a>
+    </div>
+  </div>
+</form>
+
+<div nz-row class="search-result-list">
+  <div nz-col [nzMd]="12" class="table-title">云桌面登录流水</div>
+  <div nz-col [nzMd]="12" class="table-operations">
+    <button nz-button nzSize="small" nzType="primary" (click)="add()">添加</button>
+  </div>
+
+  <nz-table *ngIf="listData"
+            #basicTable
+            nzShowPagination
+            nzShowSizeChanger
+            [nzSize]="'small'"
+            [nzFooter] = "'共182条，第1-10条'"
+            [nzData]="listData"
+            [nzLoading]="loading"
+            (nzCurrentPageDataChange)="currentPageDataChange($event)">
+    <thead>
+    <tr>
+      <th>审批结果</th>
+      <th>审批人</th>
+      <th>审批时间</th>
+      <th>截止时间</th>
+      <th>操作人员</th>
+      <th>云桌面账号</th>
+      <th>申请时长</th>
+      <th>申请时间</th>
+      <th>备注</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable['data']">
+      <td>{{ data['loginSuperviseResult'] }}</td>
+      <td>{{ data['loginSuperviserUser'] }}</td>
+      <td>{{ data['loginSuperviseDate'] }}</td>
+      <td>{{ data['endSuperviseDate'] }}</td>
+      <td>{{ data['userName'] }}</td>
+      <td>{{ data['cloudUserName'] }}</td>
+      <td>{{ data['loginTime'] }}</td>
+      <td>{{ data['requestDate'] }}</td>
+      <td>{{ data['remark'] }}</td>
+
+      <td>
+        <a>修改</a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a nz-popconfirm nzTitle="Are you sure delete this task?" (nzOnConfirm)="remove(data.id)">删除</a>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+
+
+
