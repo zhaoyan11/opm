@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
-  // 多数据源查询
-  { path: 'sql-exe', loadChildren: './sql-exe/sql-exe.module#SqlExeModule' },
-  // { path: '', redirectTo: '/sql-exe', pathMatch: 'full'},
-  { path: '**', component: PageNotFoundComponent }
+  { path: 'user', loadChildren: './user/user.module#UserModule' },
+  
+  // 云桌面信息
+  { path: 'accountInfo', loadChildren: './account-info/account-info.module#AccountInfoModule' },
+  { path: 'cloudApply', loadChildren: './cloud-apply/cloud-apply.module#CloudApplyModule' },
+  // { path: '', redirectTo: '/accountInfo', pathMatch: 'full' },
+  // { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

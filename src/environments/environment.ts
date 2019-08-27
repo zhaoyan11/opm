@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   hmr: false,
-  apiUrl: 'api for dev'
+  apiUrl: '/opm/system'
 };
 
 /*

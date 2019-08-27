@@ -1,6 +1,6 @@
 {
-  "/api/v1":{
-    "target":"http://test.sumsss.cn:8001",
+  "/opm":{
+    "target":"http://172.32.10.71:8080",
     "secure":false
   }
 }

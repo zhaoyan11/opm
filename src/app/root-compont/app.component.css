@@ -1,0 +1,7 @@
+[nz-menu] {
+  margin-top: -45px;
+}
+
+[nz-menu]:hover {
+  margin-top: 0;
+}

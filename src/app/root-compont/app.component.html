@@ -1,14 +1,22 @@
-<ul nz-menu [nzMode]="'horizontal'" [nzTheme]="'dark'">
+<ul *ngIf="!isProd" nz-menu [nzMode]="'horizontal'" [nzTheme]="'dark'">
   <li nz-submenu>
-    <span title><i nz-icon type="mail"></i> Navigation One</span>
+    <span title><i nz-icon type="mail"></i>云桌面工具</span>
     <ul>
       <li nz-menu-group>
         <span title>Item 1</span>
         <ul>
           <li nz-menu-item>
-            <a routerLink="/sql-exe" routerLinkActive="active">sql-exe</a>
+            <a routerLink="/accountInfo" routerLinkActive="active">账号信息查询</a>
           </li>
-          <li nz-menu-item>Option 2</li>
+          <li nz-menu-item>
+            <a routerLink="/user" routerLinkActive="active">user</a>
+          </li>
+          <li nz-menu-item>
+            <a [routerLink]="['/user', 1]" routerLinkActive="active">user/1</a>
+          </li>
+          <li nz-menu-item>
+            <a routerLink="/cloudApply" routerLinkActive="active">云桌面登录申请</a>
+          </li>
         </ul>
       </li>
       <li nz-menu-group>
