@@ -1,94 +1,87 @@
-<form nz-form class="ant-advanced-search-form" [nzLayout]="'vertical'">
+<form class="ant-advanced-search-form"
+      nz-form
+      #queryForm="ngForm"
+      [nzLayout]="'vertical'"
+      (ngSubmit)="getList(query)">
+
   <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 40, xl: 40, xxl: 40 }">
     <div nz-col [nzXXl]="4" [nzXl]="6" [nzLg]="8" [nzMd]="12">
       <nz-form-item>
         <nz-form-control>
           <input
+            name="loginSuperviseResult"
+            [(ngModel)]="query['loginSuperviseResult']"
             nz-input
-            placeholder="姓名"
-          />
-        </nz-form-control>
-      </nz-form-item>
-    </div>
-    <div nz-col [nzXXl]="4" [nzXl]="6" [nzLg]="8" [nzMd]="12">
-      <nz-form-item>
-        <nz-form-control>
-          <input
-            nz-input
-            placeholder="电话"
-          />
-        </nz-form-control>
-      </nz-form-item>
-    </div>
-    <div nz-col [nzXXl]="4" [nzXl]="6" [nzLg]="8" [nzMd]="12">
-      <nz-form-item>
-        <nz-form-control>
-          <input
-            nz-input
-            placeholder="身份证"
-          />
-        </nz-form-control>
-      </nz-form-item>
-    </div>
-    <div nz-col [nzXXl]="4" [nzXl]="6" [nzLg]="8" [nzMd]="12">
-      <nz-form-item>
-        <nz-form-control>
-          <input
-            nz-input
-            placeholder="居住地址"
-          />
-        </nz-form-control>
-      </nz-form-item>
-    </div>
-    <div nz-col [nzXXl]="4" [nzXl]="6" [nzLg]="8" [nzMd]="12">
-      <nz-form-item>
-        <nz-form-control>
-          <input
-            nz-input
-            placeholder="籍贯"
-          />
-        </nz-form-control>
-      </nz-form-item>
-    </div>
-    <div nz-col [nzXXl]="4" [nzXl]="6" [nzLg]="8" [nzMd]="12">
-      <nz-form-item>
-        <nz-form-control>
-          <input
-            nz-input
-            placeholder="政治面貌"
+            placeholder="审批结果"
           />
         </nz-form-control>
       </nz-form-item>
     </div>
 
     <div nz-col [nzXXl]="4" [nzXl]="6" [nzLg]="8" [nzMd]="12">
-      <button nz-button [nzType]="'primary'">查询</button>
-      <button nz-button>重置</button>
-      <a class="collapse">
-        Collapse
-        <i nz-icon [nzType]="'down'"></i>
-      </a>
+      <nz-form-item>
+        <nz-form-control>
+          <input
+            name="loginSuperviserUser"
+            [(ngModel)]="query['loginSuperviserUser']"
+            nz-input
+            placeholder="审批人"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col [nzXXl]="4" [nzXl]="6" [nzLg]="8" [nzMd]="12">
+      <nz-form-item>
+        <nz-form-control>
+          <input
+            name="loginSuperviseDate"
+            [(ngModel)]="query['loginSuperviseDate']"
+            nz-input
+            placeholder="审批时间"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col [nzXXl]="4" [nzXl]="6" [nzLg]="8" [nzMd]="12">
+      <div class="search-btn-group">
+        <button type="button" nz-button [nzType]="'primary'" (click)="getList()">查询</button>
+        <button type="button" nz-button (click)="resetQuery(queryForm)">重置</button>
+        <a class="collapse">
+          Collapse
+          <i nz-icon [nzType]="'down'"></i>
+        </a>
+      </div>
     </div>
   </div>
 </form>
 
-<div nz-row class="search-result-list">
-  <div nz-col [nzMd]="12" class="table-title">云桌面登录流水</div>
-  <div nz-col [nzMd]="12" class="table-operations">
-    <button nz-button nzSize="small" nzType="primary" (click)="add()">添加</button>
-  </div>
 
-  <nz-table *ngIf="listData"
+<ng-container>
+  <ng-template #header>
+    <div nz-row nzType="flex" nzJustify="space-between">
+      <div class="table-title" nz-col>云桌面登录流水</div>
+      <div class="table-operations" nz-col>
+        <button nz-button nzSize="small" nzType="primary" (click)="add()">申请登录</button>
+      </div>
+    </div>
+  </ng-template>
+
+  <nz-table class="search-result-table"
+            *ngIf="list"
             #basicTable
-            nzShowPagination
-            nzShowSizeChanger
             [nzSize]="'small'"
-            [nzFooter] = "'共182条，第1-10条'"
-            [nzData]="listData"
-            [nzLoading]="loading"
-            (nzCurrentPageDataChange)="currentPageDataChange($event)">
+            [nzTitle]="header"
+            [nzFooter]="footer"
+            [nzShowPagination]="false"
+            [nzBordered]="true"
+            [nzData]="list['rows']"
+            [nzPageSize]="query.pageSize"
+            [nzLoading]="loading">
     <thead>
     <tr>
+      <th>序号</th>
       <th>审批结果</th>
       <th>审批人</th>
       <th>审批时间</th>
@@ -102,7 +95,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let data of basicTable['data']">
+    <tr *ngFor="let data of basicTable['data'];let i = index;">
+      <td>{{ i+1 }}</td>
       <td>{{ data['loginSuperviseResult'] }}</td>
       <td>{{ data['loginSuperviserUser'] }}</td>
       <td>{{ data['loginSuperviseDate'] }}</td>
@@ -114,15 +108,41 @@
       <td>{{ data['remark'] }}</td>
 
       <td>
-        <a>修改</a>
+        <a class="text-nowrap">修改</a>
         <nz-divider nzType="vertical"></nz-divider>
-        <a nz-popconfirm nzTitle="Are you sure delete this task?" (nzOnConfirm)="remove(data.id)">删除</a>
+        <a class="text-nowrap"
+           nz-popconfirm
+           nzTitle="Are you sure delete this task?"
+           (nzOnConfirm)="remove(data.id)">删除
+        </a>
       </td>
     </tr>
     </tbody>
   </nz-table>
-</div>
 
+  <ng-template #footer>
+    <div nz-row nzType="flex" nzJustify="space-between">
+      <div nz-col>
+        第 <i>{{(query.pageNum-1) * query.pageSize + 1 }}-{{query.pageNum * query.pageSize}}</i> 条，
+        共 <i>{{list.total}}</i> 条
+      </div>
+
+      <div nz-col>
+        <nz-pagination
+          [nzSize]="'small'"
+          [(nzPageIndex)]="query.pageNum"
+          [(nzPageSize)]="query.pageSize"
+          [nzTotal]="list.total"
+          nzShowSizeChanger
+          (nzPageIndexChange)="getList()"
+          (nzPageSizeChange)="getList()">
+        </nz-pagination>
+      </div>
+    </div>
+  </ng-template>
+</ng-container>
+
+<app-cloud-apply-detail *ngIf="drawerVisible"></app-cloud-apply-detail>
 
 
 

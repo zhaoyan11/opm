@@ -5,16 +5,20 @@ import { ZhanyanpPipe } from './pipes/zhanyanp.pipe';
 import { ZhanyandDirective } from './directives/zhanyand.directive';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ZhaoyancComponent, ZhanyanpPipe, ZhanyandDirective],
   imports: [
     CommonModule,
+    FormsModule,
     HttpClientModule,
-    NgZorroAntdModule
+    NgZorroAntdModule,
+
   ],
   exports: [
     CommonModule,
+    FormsModule,
     HttpClientModule,
     NgZorroAntdModule,
 

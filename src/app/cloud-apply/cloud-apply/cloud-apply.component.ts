@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UserDetailComponent } from '../../user/user-detail/user-detail.component';
 import { NzModalService } from 'ng-zorro-antd';
 import { CloudApplyHttpService } from '../../shared/services/http/cloud-apply-http.service';
 
@@ -8,9 +7,12 @@ import { CloudApplyHttpService } from '../../shared/services/http/cloud-apply-ht
   templateUrl: './cloud-apply.component.html',
   styleUrls: ['./cloud-apply.component.css']
 })
+
 export class CloudApplyComponent implements OnInit {
-  public listData: any;
+  public list: any;
   public loading = false;
+  public query: any = {pageNum: 1, pageSize: 10};
+  public drawerVisible = false;
 
   constructor(
     private modal: NzModalService,
@@ -22,29 +24,26 @@ export class CloudApplyComponent implements OnInit {
   }
 
   add(): void {
-    this.modal.create({
-      nzTitle: 'Modal Title',
-      nzWidth: '680',
-      nzContent: UserDetailComponent,
-      nzClosable: false,
-      nzMaskClosable: false,
-      nzOnOk: instance => instance.ok()
-    });
+    this.drawerVisible = true;
   }
 
-  getList(): void {
+  getList(queryParams = this.query): void {
     this.loading = true;
-    this.cloudApplyHttp.getList().subscribe( res => {
+    this.cloudApplyHttp.getList(queryParams).subscribe( res => {
       if (res['code'] === 0) {
-        this.listData = res['rows'] || [];
+        this.list = res || {total: 0, rows: []};
         this.loading = false;
       }
     });
+  }
+
+  resetQuery(formData): void {
+    formData.resetForm();
+    this.getList();
   }
 
   remove(id): void {
 
   }
 
-  currentPageDataChange($event: any): void {}
 }

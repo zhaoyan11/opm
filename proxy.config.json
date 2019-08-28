@@ -1,6 +1,6 @@
 {
   "/opm":{
-    "target":"http://172.32.10.71:8080",
+    "target":"http://172.32.10.245:8080",
     "secure":false
   }
 }

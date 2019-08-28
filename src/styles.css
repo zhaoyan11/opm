@@ -1,3 +1,4 @@
+/* 全局 */
 body {
   padding: 0 10px;
   background-color: #f3f3f4;
@@ -7,9 +8,13 @@ button {
   margin-right: 8px;
 }
 
+.text-nowrap {
+  white-space: nowrap;
+}
+
 /* 搜索部分 */
 .ant-advanced-search-form {
-  margin-top: 15px;
+  margin: 15px 0 20px 0;
   padding: 10px 15px;
   background: #fff;
   border: 1px solid #d9d9d9;
@@ -21,40 +26,23 @@ button {
   font-size: 12px;
 }
 
-nz-form-item {
-  margin-bottom: 6px!important;
+.ant-advanced-search-form nz-form-item,
+.ant-advanced-search-form nz-form-label,
+.ant-advanced-search-form .search-btn-group {
+  margin: 6px!important;
 }
 
-nz-form-label {
-  padding-bottom: 3px!important;
-}
 
 /* 表格部分 */
-.search-result-list {
-  margin-top: 16px;
-  border: 1px solid #d9d9d9;
-  border-radius: 6px;
+.search-result-table {
   background-color: #fff;
 }
 
-.table-title {
-  padding: 15px 0 10px 10px;
-}
-
-.table-operations {
-  text-align: right;
-  padding: 15px 5px 10px 0;
-}
-
-.table-operations button[nzSize="small"] {
+.search-result-table .table-operations button[nzSize="small"] {
   padding: 1px 15px 3px 15px;
 }
 
-thead tr {
+.search-result-table th {
   white-space: nowrap;
-  font-weight: bold!important;
-}
-
-nz-table {
-  border: 1px solid green;
+  font-weight: bold;
 }
