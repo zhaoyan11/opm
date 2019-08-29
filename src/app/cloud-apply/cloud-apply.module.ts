@@ -10,6 +10,7 @@ import { CloudApplyDetailComponent } from './cloud-apply-detail/cloud-apply-deta
   imports: [
     CloudApplyRoutingModule,
     SharedModule
-  ]
+  ],
+  entryComponents: [CloudApplyDetailComponent]
 })
 export class CloudApplyModule { }

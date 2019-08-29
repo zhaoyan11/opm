@@ -1,0 +1,77 @@
+<form nz-form>
+  <div nz-row nzGutter="8">
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label>申请人</nz-form-label>
+        <nz-form-control>
+          <input nz-input placeholder="please enter user name" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label>申请时长</nz-form-label>
+        <nz-form-control>
+          <nz-range-picker></nz-range-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label>审批人</nz-form-label>
+        <nz-form-control>
+          <nz-select nzPlaceHolder="Please choose the type"></nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label>微信</nz-form-label>
+        <nz-form-control>
+          <nz-select nzPlaceHolder="Please choose the approver"></nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label>电话</nz-form-label>
+        <nz-form-control>
+          <input nz-input placeholder="please enter user name" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label>项目经理</nz-form-label>
+        <nz-form-control>
+          <input nz-input placeholder="please enter user name" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label>申请理由</nz-form-label>
+        <nz-form-control>
+                  <textarea
+                    nz-input
+                    placeholder="please enter url description"
+                    [nzAutosize]="{ minRows: 4, maxRows: 4 }"
+                  ></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</form>
+
+<div class="text-right">
+  <button type="button" nz-button (click)="close()" class="ant-btn">Cancel</button>
+  <button class="mr-0" type="button" nz-button nzType="primary" (click)="close()">Submit</button>
+</div>
+
+

@@ -6,7 +6,6 @@
     "start": "ng serve --open --proxyConfig=proxy.config.json",
     "hmr": "ng serve --open --configuration=hmr --proxyConfig=proxy.config.json",
     "build": "ng build --prod --optimization=true --deployUrl=/opm/angular/ --outputPath=dist/angular",
-    "buildJit": "ng build --prod --optimization=true",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

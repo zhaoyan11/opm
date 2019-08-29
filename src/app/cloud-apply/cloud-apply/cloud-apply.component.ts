@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NzModalService } from 'ng-zorro-antd';
+import { NzDrawerService, NzModalService } from 'ng-zorro-antd';
 import { CloudApplyHttpService } from '../../shared/services/http/cloud-apply-http.service';
+import { CloudApplyDetailComponent } from '../cloud-apply-detail/cloud-apply-detail.component';
 
 @Component({
   selector: 'app-cloud-apply',
@@ -12,11 +13,11 @@ export class CloudApplyComponent implements OnInit {
   public list: any;
   public loading = false;
   public query: any = {pageNum: 1, pageSize: 10};
-  public drawerVisible = false;
 
   constructor(
     private modal: NzModalService,
-    private cloudApplyHttp: CloudApplyHttpService
+    private cloudApplyHttp: CloudApplyHttpService,
+    private drawer: NzDrawerService
   ) { }
 
   ngOnInit() {
@@ -24,18 +25,39 @@ export class CloudApplyComponent implements OnInit {
   }
 
   add(): void {
-    this.drawerVisible = true;
+    const drawerRef = this.drawer.create<CloudApplyDetailComponent, { value: string }, string>({
+      nzTitle: '申请登录云桌面',
+      nzContent: CloudApplyDetailComponent,
+      nzContentParams: {
+        value: '呵呵'
+      },
+      nzBodyStyle: { height: 'calc(100% - 55px)', overflow: 'auto', 'padding-bottom': '53px' },
+      nzWidth: 800
+    });
+
+    drawerRef.afterOpen.subscribe(() => {
+      console.log('Drawer(Component) open');
+    });
+
+    drawerRef.afterClose.subscribe(data => {
+      console.log(data);
+    });
   }
 
   getList(queryParams = this.query): void {
     this.loading = true;
-    this.cloudApplyHttp.getList(queryParams).subscribe( res => {
-      if (res['code'] === 0) {
+    this.cloudApplyHttp.getList(queryParams)
+      .subscribe( res => {
+      // if (res['code'] === 0) {
         this.list = res || {total: 0, rows: []};
         this.loading = false;
-      }
-    });
+      // }
+    }, error => {
+        this.list = {total: 0, rows: []};
+        this.loading = false;
+      });
   }
+
 
   resetQuery(formData): void {
     formData.resetForm();
