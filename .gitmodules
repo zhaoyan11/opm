@@ -1,0 +1,3 @@
+[submodule "tinyhub"]
+	path = tinyhub
+	url = git@github.com:zhaoyan11/tinyhub.git
